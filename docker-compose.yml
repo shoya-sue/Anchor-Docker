@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  anchor-dev:
+    build: .
+    container_name: solana-anchor-dev
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - solana_data:/root/.local/share/solana
+      - cargo_registry:/root/.cargo/registry
+    ports:
+      - "8899:8899"  # Solana test validator
+      - "8900:8900"  # Solana websocket
+    environment:
+      - RUST_LOG=info
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  solana_data:
+  cargo_registry:
