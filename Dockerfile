@@ -24,16 +24,26 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
 # Solana CLIをインストール
-RUN sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
+RUN sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
 ENV PATH="/root/.local/share/solana/install/active_release/bin:${PATH}"
 
 # Yarnをインストール
 RUN npm install -g yarn
 
-# AVMとAnchor CLIをインストール
-RUN cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
-RUN avm install latest
-RUN avm use latest
+# AVM , Anchor CLIをインストール
+# RUN cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
+# RUN avm install latest
+# RUN avm use latest
+
+# Anchor install without AVM
+RUN cargo install --git https://github.com/coral-xyz/anchor --tag v0.30.1 anchor-cli
+
+# Version Check
+RUN cargo --version
+RUN solana --version
+RUN anchor --version
+RUN node --version
+RUN yarn --version
 
 # Solanaを devnet に設定
 RUN solana config set --url https://api.devnet.solana.com
