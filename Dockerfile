@@ -36,7 +36,7 @@ RUN npm install -g yarn
 # RUN avm use latest
 
 # Anchor install without AVM
-RUN cargo install --git https://github.com/coral-xyz/anchor --tag v0.30.1 anchor-cli
+RUN cargo install --git https://github.com/coral-xyz/anchor --tag v0.31.1 anchor-cli
 
 # Version Check
 RUN cargo --version
