@@ -32,3 +32,23 @@ anchor init test-project
 cd test-project
 anchor test
 ```
+
+## Blue Shift 学習プログラム環境
+
+https://learn.blueshift.gg/en
+
+### Blue Shift Anchor Vault
+
+https://learn.blueshift.gg/en/challenges/anchor-vault
+
+```bash
+anchor init blueshift_anchor_vault
+```
+
+### Blue Shift Anchor Escrow
+
+https://learn.blueshift.gg/en/challenges/anchor-escrow
+
+```bash
+anchor init blueshift_anchor_escrow
+```
