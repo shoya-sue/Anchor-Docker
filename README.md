@@ -64,4 +64,6 @@ https://learn.blueshift.gg/en/challenges/pinocchio-vault
 cargo new --lib blueshift_pinocchio-vault
 cd blueshift_pinocchio-vault
 cargo add pinocchio
+cargo add pinocchio-system
+cargo add pinocchio-token
 ```
