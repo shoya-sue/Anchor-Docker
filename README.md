@@ -52,3 +52,13 @@ https://learn.blueshift.gg/en/challenges/anchor-escrow
 ```bash
 anchor init blueshift_anchor_escrow
 ```
+
+### Blue Shift Rust Pinocchio
+
+https://learn.blueshift.gg/en/challenges/pinocchio-vault
+
+```bash
+cargo new --lib blueshift_pinocchio-vault
+cd blueshift_pinocchio-vault
+cargo add pinocchio
+```
