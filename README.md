@@ -51,6 +51,9 @@ https://learn.blueshift.gg/en/challenges/anchor-escrow
 
 ```bash
 anchor init blueshift_anchor_escrow
+cd blueshift_anchor_escrow
+cargo add anchor-lang --features init-if-needed
+cargo add anchor-spl
 ```
 
 ### Blue Shift Rust Pinocchio
