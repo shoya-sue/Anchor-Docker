@@ -61,9 +61,7 @@ cargo add anchor-spl
 https://learn.blueshift.gg/en/challenges/pinocchio-vault
 
 ```bash
-cargo new --lib blueshift_pinocchio-vault
-cd blueshift_pinocchio-vault
-cargo add pinocchio
-cargo add pinocchio-system
-cargo add pinocchio-token
+cargo new blueshift_pinocchio_vault --lib --edition 2021
+cd blueshift_pinocchio_vault
+cargo add pinocchio pinocchio-system
 ```
