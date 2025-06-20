@@ -56,7 +56,7 @@ cargo add anchor-lang --features init-if-needed
 cargo add anchor-spl
 ```
 
-### Blue Shift Rust Pinocchio
+### Blue Shift Rust Pinocchio Vault
 
 https://learn.blueshift.gg/en/challenges/pinocchio-vault
 
@@ -64,4 +64,14 @@ https://learn.blueshift.gg/en/challenges/pinocchio-vault
 cargo new blueshift_pinocchio_vault --lib --edition 2021
 cd blueshift_pinocchio_vault
 cargo add pinocchio pinocchio-system
+```
+
+### Blue Shift Rust Pinnochio Escrow
+
+https://learn.blueshift.gg/en/challenges/pinocchio-escrow
+
+```bash
+cargo new blueshift_pinocchio_escrow --lib --edition 2021
+cd blueshift_pinocchio_escrow
+cargo add pinocchio pinocchio-system pinocchio-token pinocchio-associated-token-account
 ```
