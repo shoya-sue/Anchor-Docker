@@ -1,4 +1,4 @@
-# Solana Anchor開発環境のDockerfile
+# Solana Anchor開発環境のDockerfile (高速版)
 FROM --platform=linux/amd64 ubuntu:22.04
 
 # 非インタラクティブモードに設定
@@ -12,12 +12,11 @@ RUN apt-get update && apt-get install -y \
     libudev-dev \
     libssl-dev \
     git \
+    nodejs \
+    npm \
+    wget \
+    bzip2 \
     && rm -rf /var/lib/apt/lists/*
-
-# Node.js 20をインストール
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs && \
-    rm -rf /var/lib/apt/lists/*
 
 # 作業ディレクトリを設定
 WORKDIR /workspace
@@ -26,27 +25,25 @@ WORKDIR /workspace
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
-# Solana CLIをインストール
-RUN sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
-ENV PATH="/root/.local/share/solana/install/active_release/bin:${PATH}"
+# Solana CLIを直接ダウンロードしてインストール
+RUN wget https://github.com/anza-xyz/agave/releases/download/v2.2.20/solana-release-x86_64-unknown-linux-gnu.tar.bz2 && \
+    tar jxf solana-release-x86_64-unknown-linux-gnu.tar.bz2 && \
+    mv solana-release /root/solana && \
+    rm solana-release-x86_64-unknown-linux-gnu.tar.bz2
+ENV PATH="/root/solana/bin:${PATH}"
 
 # Yarnをインストール
 RUN npm install -g yarn
 
-# AVM , Anchor CLIをインストール
-# RUN cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
-# RUN avm install latest
-# RUN avm use latest
-
-# Anchor install without AVM
+# Anchor CLIをインストール
 RUN cargo install --git https://github.com/coral-xyz/anchor --tag v0.31.1 anchor-cli
 
 # Version Check
-RUN cargo --version
-RUN solana --version
-RUN anchor --version
-RUN node --version
-RUN yarn --version
+RUN cargo --version && \
+    solana --version && \
+    anchor --version && \
+    node --version && \
+    yarn --version
 
 # Solanaを devnet に設定
 RUN solana config set --url https://api.devnet.solana.com

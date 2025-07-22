@@ -1,35 +1,64 @@
 # Anchor-Docker
 
-## Docker Image Build
+Solana Anchor開発環境のDockerコンテナです。
+
+## 前提条件
+
+- Docker Desktop
+- Docker Compose
+- 8GB以上の空きディスク容量
+
+## クイックスタート
+
+### 1. Docker Image Build
 
 ```bash
 docker-compose build
 ```
 
-## Docker Container Run
+> **Note**: Apple Silicon (M1/M2)の場合、x86_64エミュレーションで動作するため、ビルドに時間がかかります（約10-15分）。
+
+### 2. Docker Container Run
 
 ```bash
 docker-compose up -d
 ```
 
-## Enter Docker Container
+### 3. Enter Docker Container
 
 ```bash
 docker-compose exec anchor-dev bash
 ```
 
-## Version
+### 4. Solanaキーペアの生成（初回のみ）
 
 ```bash
-# バージョン確認
-solana --version
-anchor --version
-node --version
-yarn --version
+# コンテナ内で実行
+solana-keygen new --no-passphrase --force
+```
 
-# 新しいAnchorプロジェクトを作成してテスト
+## インストール済みツールのバージョン
+
+| ツール | バージョン |
+|--------|-----------|
+| Solana CLI | 2.2.20 |
+| Anchor CLI | 0.31.1 |
+| Node.js | 20.x |
+| Yarn | 1.22.22 |
+| Rust | 1.88.0 |
+
+## 動作確認
+
+```bash
+# コンテナ内で実行
+# 新しいAnchorプロジェクトを作成
 anchor init test-project
 cd test-project
+
+# ビルドのみ実行（推奨）
+anchor build
+
+# テストを実行（注意：Docker環境ではtest-validatorが正常に起動しない場合があります）
 anchor test
 ```
 
@@ -66,7 +95,7 @@ cd blueshift_pinocchio_vault
 cargo add pinocchio pinocchio-system
 ```
 
-### Blue Shift Rust Pinnochio Escrow
+### Blue Shift Rust Pinocchio Escrow
 
 https://learn.blueshift.gg/en/challenges/pinocchio-escrow
 
@@ -75,3 +104,23 @@ cargo new blueshift_pinocchio_escrow --lib --edition 2021
 cd blueshift_pinocchio_escrow
 cargo add pinocchio pinocchio-system pinocchio-token pinocchio-associated-token-account
 ```
+
+## Docker管理コマンド
+
+```bash
+# コンテナの停止
+docker-compose down
+
+# コンテナとボリュームの削除（データもリセット）
+docker-compose down -v
+
+# ログの確認
+docker-compose logs -f anchor-dev
+
+# コンテナの再起動
+docker-compose restart
+```
+
+## トラブルシューティング
+
+詳細は[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)を参照してください。

@@ -1,5 +1,39 @@
 # Make Project
-blueshift_anchor_vault
-blueshift_anchor_escrow
-blueshift_pinocchio_vault
-blueshift_pinocchio_escrow
+blueshift_anchor_vault/
+blueshift_anchor_escrow/
+blueshift_pinocchio_vault/
+blueshift_pinocchio_escrow/
+test-project/
+
+# Anchor/Solana artifacts
+target/
+.anchor/
+test-ledger/
+node_modules/
+dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Docker override files
+docker-compose.override.yml
+.dockerignore.local
